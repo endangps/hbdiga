@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Selamat Ulang Tahun!</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        width: 800px;
+        position: relative;
+      }
+
+      .content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+      }
+
+      .text-content {
+        flex: 1;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      h1 {
+        color: #ff6b6b;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #666;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .cake {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: 80px auto;
+      }
+
+      .cake-base {
+        width: 100px;
+        height: 50px;
+        background: #ff8c9f;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .cake-middle {
+        width: 90px;
+        height: 30px;
+        background: #ff4d6d;
+        border-radius: 10px;
+        position: absolute;
+        top: -15px;
+        left: 5px;
+      }
+
+      .cake-top {
+        width: 80px;
+        height: 20px;
+        background: #ffb6c1;
+        border-radius: 10px;
+        position: absolute;
+        top: -25px;
+        left: 10px;
+      }
+
+      .candle {
+        width: 6px;
+        height: 20px;
+        background: #ffd700;
+        position: absolute;
+        top: -45px;
+        left: 47px;
+        border-radius: 3px 3px 0 0;
+      }
+
+      .flame {
+        width: 1px;
+        height: 12px;
+        position: absolute;
+        top: -57px;
+        left: 47px;
+        transition: opacity 0.3s;
+      }
+
+      .flame::before {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 12px;
+        background: #ff4500;
+        border-radius: 50% 50% 20% 20%;
+        animation: flicker 0.5s infinite alternate;
+        transform-origin: center bottom;
+      }
+
+      @keyframes flicker {
+        0% {
+          transform: scale(1.2, 1.4) rotate(-2deg);
+          opacity: 0.9;
+        }
+        100% {
+          transform: scale(1.4, 1.6) rotate(2deg);
+          opacity: 1;
+        }
+      }
+
+      .smoke {
+        width: 6px;
+        height: 12px;
+        position: absolute;
+        top: -57px;
+        left: 47px;
+        opacity: 0;
+        transition: all 0.3s;
+      }
+      @keyframes flicker {
+        0% {
+          transform: scale(1) rotate(-5deg);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.1) rotate(5deg);
+          opacity: 1;
+        }
+      }
+
+      @keyframes rise {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(-20px) scale(2);
+          opacity: 0;
+        }
+      }
+
+      .countdown {
+        font-size: 48px;
+        color: #ff4d6d;
+        margin: 20px 0;
+        display: none;
+      }
+
+      .photo-container {
+        width: 150px;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+
+      .photo-frame {
+        width: 150px;
+        height: 150px;
+        border: 8px solid #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+
+      .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .button {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        margin-top: 20px;
+      }
+
+      .button:hover {
+        transform: scale(1.1);
+      }
+
+      .flame.out {
+        opacity: 0;
+      }
+
+      .smoke.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Selamat Ulang Tahun IGA! 🎉</h1>
+
+      <div class="content-wrapper">
+        <div class="photo-container" id="photo-left">
+          <div class="photo-frame">
+            <img src="foto-ultah.jpg" alt="foto-ultah2.jpg" />
+          </div>
+        </div>
+
+        <div class="text-content">
+          <p>
+            di umur ke 25 ini, aku mau ngucapin Semoga harapan dan impianmu
+            menjadi kenyataan. Tetap sehat, bahagia, dan sukses selalu! Tuhan
+            selalu pakai hidup kamu
+          </p>
+          <p>
+            Amsal 16 : 20 “Siapa memperhatikan firman akan mendapat kebaikan,
+            dan berbahagialah orang yang percaya kepada Tuhan.”
+          </p>
+
+          <div class="cake">
+            <div class="cake-base"></div>
+            <div class="cake-middle"></div>
+            <div class="cake-top"></div>
+            <div class="candle"></div>
+            <div class="flame"></div>
+            <div class="smoke"></div>
+          </div>
+
+          <div class="countdown" id="countdown"></div>
+          <button class="button" onclick="startCelebration()">
+            Tiup Lilin!
+          </button>
+        </div>
+
+        <div class="photo-container" id="photo-right">
+          <div class="photo-frame">
+            <img src="foto-ultah2.jpg" alt="Birthday Photo 2" />
+          </div>
+        </div>
+      </div>
+
+      <audio id="birthday-song" preload="auto">
+        <source src="happy-birthday-266285.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <script>
+      const audio = document.getElementById("birthday-song");
+      const countdown = document.getElementById("countdown");
+      const flame = document.querySelector(".flame");
+      const smoke = document.querySelector(".smoke");
+      const photoLeft = document.getElementById("photo-left");
+      const photoRight = document.getElementById("photo-right");
+
+      function startCelebration() {
+        event.target.style.display = "none";
+
+        countdown.style.display = "block";
+
+        let count = 3;
+        countdown.textContent = count;
+
+        const timer = setInterval(() => {
+          count--;
+          if (count > 0) {
+            countdown.textContent = count;
+          } else if (count === 0) {
+            countdown.textContent = "Tiup!";
+
+            try {
+              audio.play().catch((error) => {
+                console.error("Audio play failed:", error);
+              });
+            } catch (error) {
+              console.error("Audio error:", error);
+            }
+          } else {
+            clearInterval(timer);
+            countdown.style.display = "none";
+
+            flame.classList.add("out");
+            smoke.classList.add("show");
+
+            setTimeout(() => {
+              photoLeft.style.opacity = "1";
+              photoRight.style.opacity = "1";
+            }, 1000);
+          }
+        }, 1000);
+      }
+
+      audio.addEventListener("canplaythrough", () => {
+        console.log("Audio is ready to play");
+      });
+
+      audio.addEventListener("error", (e) => {
+        console.error("Audio error:", e);
+      });
+
+      window.addEventListener("beforeunload", () => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+    </script>
+  </body>
+</html>
